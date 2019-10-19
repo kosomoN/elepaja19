@@ -1,4 +1,4 @@
-update=18/10/2019 10:51:44
+update=18/10/2019 18:05:54
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,4 +59,3 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=C:/Users/Juha/Documents/Aalto/elektroniikkapaja/kicad/components/lab_power_supply
-LibName31=C:/Users/Juha/Documents/Aalto/elektroniikkapaja/kicad/components/Transistor_BJT
