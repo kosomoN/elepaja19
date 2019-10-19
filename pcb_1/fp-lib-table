@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name lab_power_supply)(type KiCad)(uri C:\Users\Juha\Documents\Aalto\elektroniikkapaja\elepaja\footprints\lab_power_supply.pretty)(options "")(descr ""))
+)
