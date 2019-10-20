@@ -58,7 +58,7 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=C:/Users/Juha/Documents/Aalto/elektroniikkapaja/kicad/components/lab_power_supply
+LibName30=../components/lab_power_supply
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
