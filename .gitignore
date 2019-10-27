@@ -382,3 +382,5 @@ MigrationBackup/
 
 # Object files
 *.o
+control_mc/*.elf
+control_mc/*.hex
