@@ -7,11 +7,13 @@
 #                is connected.
 # FUSES ........ Parameters for avrdude to flash the fuses appropriately.
 
-DEVICE     = attiny2313
+DEVICE     = atmega328pb
 CLOCK      = 8000000
 PROGRAMMER = -c arduino -P /dev/tty.usb* -b 19200 
-OBJECTS    = main.o
 
+SRC := main.c
+OBJ := $(patsubst %.c,%.o,$(SRC))
+DEP := $(patsubst %.c,%.d,$(SRC))
 
 ######################################################################
 ######################################################################
@@ -19,13 +21,11 @@ OBJECTS    = main.o
 # Tune the lines below only if you know what you are doing:
 
 AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
-COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
+CC = avr-gcc
+CFLAGS = -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -B ../../packs/gcc/dev/atmega328pb/ -I ../../packs/include/
 
 # symbolic targets:
 all:	main.hex
-
-.c.o:
-	$(COMPILE) -c $< -o $@
 
 flash:	all
 	$(AVRDUDE) -U flash:w:main.hex:i
@@ -35,12 +35,16 @@ load: all
 	bootloadHID main.hex
 
 clean:
-	rm -f main.hex main.elf $(OBJECTS)
+	rm -f main.hex main.elf $(OBJ) $(DEP)
 
-# file targets:
-main.elf: $(OBJECTS)
-	$(COMPILE) -o main.elf $(OBJECTS)
+main.elf: $(OBJ) $(DEP)
+	$(CC) -o main.elf $(OBJ)
 	avr-size -C main.elf
 
 main.hex: main.elf
 	avr-objcopy -j .text -j .data -O ihex main.elf main.hex
+
+-include $(DEP)
+
+%.d: %.c
+	@$(CC) -MM $< | sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' > $@

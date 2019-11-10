@@ -1,0 +1,4 @@
+Dependencies:
+    - avr-gcc and avr-libc
+    - Atmel pack with ATMEGA328PB files. Looks for them by default in
+     ../../packs/gcc/dev/atmega328pb/ and ../../packs/include/
