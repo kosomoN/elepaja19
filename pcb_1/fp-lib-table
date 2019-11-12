@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name lab_power_supply)(type KiCad)(uri ${KIPRJMOD}\footprints\lab_power_supply.pretty)(options "")(descr ""))
-)
