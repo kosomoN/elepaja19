@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name IRM-05_ACDC)(type KiCad)(uri ${KIPRJMOD}/IRM-05_ACDC.pretty)(options "")(descr ""))
+)
