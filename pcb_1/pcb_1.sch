@@ -52,7 +52,7 @@ U 1 1 5DA97EB0
 P 8200 3800
 F 0 "Rs1" V 8280 3800 50  0000 C CNN
 F 1 "0.1" V 8200 3800 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P25.40mm_Horizontal" V 8130 3800 50  0001 C CNN
+F 2 "Resistors_SMD:R_2816" V 8130 3800 50  0001 C CNN
 F 3 "" H 8200 3800 50  0000 C CNN
 	1    8200 3800
 	1    0    0    -1  
@@ -113,23 +113,12 @@ F 3 "http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DAT
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Screw_Terminal_01x02 J2
-U 1 1 5DCB6E99
-P 8400 2300
-F 0 "J2" H 8480 2292 50  0000 L CNN
-F 1 "Screw_Terminal_01x02" H 8480 2201 50  0000 L CNN
-F 2 "Connectors:Banana_Jack_2Pin" H 8400 2300 50  0001 C CNN
-F 3 "~" H 8400 2300 50  0001 C CNN
-	1    8400 2300
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:Screw_Terminal_01x02 J4
 U 1 1 5DCB7E83
 P 10950 5250
 F 0 "J4" H 11030 5242 50  0000 L CNN
 F 1 "Screw_Terminal_01x02" H 11030 5151 50  0000 L CNN
-F 2 "Connectors:Banana_Jack_2Pin" H 10950 5250 50  0001 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 10950 5250 50  0001 C CNN
 F 3 "~" H 10950 5250 50  0001 C CNN
 	1    10950 5250
 	1    0    0    -1  
@@ -372,7 +361,7 @@ U 1 1 5DCD5148
 P 1000 1250
 F 0 "J1" H 918 925 50  0000 C CNN
 F 1 "Screw_Terminal_01x02" H 918 1016 50  0000 C CNN
-F 2 "Connectors:Banana_Jack_2Pin" H 1000 1250 50  0001 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 1000 1250 50  0001 C CNN
 F 3 "~" H 1000 1250 50  0001 C CNN
 	1    1000 1250
 	-1   0    0    1   
@@ -1174,20 +1163,28 @@ Wire Wire Line
 Connection ~ 4900 3300
 Wire Wire Line
 	4900 3300 5300 3300
-$Comp
-L Connector:Screw_Terminal_01x01 J9
-U 1 1 5DD4748F
-P 6300 850
-F 0 "J9" H 6380 892 50  0000 L CNN
-F 1 "Screw_Terminal_01x01" H 6380 801 50  0000 L CNN
-F 2 "Connectors:Banana_Jack_1Pin" H 6300 850 50  0001 C CNN
-F 3 "~" H 6300 850 50  0001 C CNN
-	1    6300 850 
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6100 850  6100 1200
 Connection ~ 6100 1200
 Wire Wire Line
 	6100 1200 8200 1200
+$Comp
+L Connector:Screw_Terminal_01x03 J2
+U 1 1 5DE7FCEE
+P 8700 2300
+F 0 "J2" H 8780 2342 50  0000 L CNN
+F 1 "Screw_Terminal_01x03" H 8780 2251 50  0000 L CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_bornier-3_P5.08mm" H 8700 2300 50  0001 C CNN
+F 3 "~" H 8700 2300 50  0001 C CNN
+	1    8700 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 850  8500 850 
+Wire Wire Line
+	8500 850  8500 2200
+Wire Wire Line
+	8200 2300 8500 2300
+Wire Wire Line
+	8500 2400 8200 2400
 $EndSCHEMATC
