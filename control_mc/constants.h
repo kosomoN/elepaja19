@@ -8,12 +8,19 @@
 
 // DAC defines
 // Clock rate: 1 / 128
-#define DAC_CLOCK_RATE ((1 << SPR0) | (1 << SPR1))
-#define DDR_DAC_SS DDRE
-#define DD_DAC_SS  DDE2
+#define DAC_CLOCK_RATE      ((1 << SPR0) | (1 << SPR1))
 
-#define SPI_VOL_DAC_CTRL_BITS = 0x30;
-#define SPI_CUR_DAC_CTRL_BITS = 0xB0;
+// Data direction registers
+#define DD_DAC_CS           DDRE
+#define DD_DAC_CS_PIN       DDE2
+#define DD_DAC_LDAC         DDRC
+#define DD_DAC_LDAC_PIN     DDC2
+
+// Port registers (output high/low selection)
+#define PORT_DAC_CS         PORTE
+#define PORT_DAC_CS_PIN     PORTE2
+#define PORT_DAC_LDAC       PORTC
+#define PORT_DAC_LDAC_PIN   PORTC2
 
 // ADC defines
 // Just a plain divider
