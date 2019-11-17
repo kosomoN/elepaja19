@@ -560,7 +560,7 @@ F 3 "~" H 5800 3250 50  0001 C CNN
 $EndComp
 Connection ~ 7850 1800
 $Comp
-L pcb_1-rescue:Isolated_ISP-lab_power_supply J5
+L lab_power_supply:Isolated_ISP J5
 U 1 1 5DDDD6E5
 P 10250 1600
 AR Path="/5DDDD6E5" Ref="J5"  Part="1" 
