@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name lab_power_supply)(type Legacy)(uri ${KIPRJMOD}/../components/lab_power_supply.lib)(options "")(descr ""))
+  (lib (name pcb_1-rescue)(type Legacy)(uri ${KIPRJMOD}/pcb_1-rescue.lib)(options "")(descr ""))
 )
