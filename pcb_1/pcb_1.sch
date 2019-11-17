@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:pcb_1-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -723,33 +724,6 @@ Connection ~ 7850 5500
 Wire Wire Line
 	7850 5500 7850 5650
 $Comp
-L Connector:Conn_01x02_Male J3
-U 1 1 5DD767CF
-P 9600 3850
-F 0 "J3" V 9662 3894 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 9753 3894 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 9600 3850 50  0001 C CNN
-F 3 "~" H 9600 3850 50  0001 C CNN
-	1    9600 3850
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	9600 4200 9600 4050
-Wire Wire Line
-	9500 4050 9500 4200
-Wire Wire Line
-	9250 4700 9200 4700
-Wire Wire Line
-	9200 4700 9200 4200
-Wire Wire Line
-	9200 4200 9500 4200
-Wire Wire Line
-	9850 4700 9900 4700
-Wire Wire Line
-	9900 4700 9900 4200
-Wire Wire Line
-	9900 4200 9600 4200
-$Comp
 L Connector:TestPoint TP1
 U 1 1 5DDB2288
 P 5250 1200
@@ -1187,4 +1161,84 @@ Wire Wire Line
 	8200 2300 8500 2300
 Wire Wire Line
 	8500 2400 8200 2400
+$Comp
+L Device:Q_NMOS_DGS Q7
+U 1 1 5DD62A9A
+P 10250 3800
+F 0 "Q7" H 10456 3754 50  0000 L CNN
+F 1 "Q_NMOS_DGS" H 10456 3845 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SuperSOT-3" H 10450 3900 50  0001 C CNN
+F 3 "~" H 10250 3800 50  0001 C CNN
+	1    10250 3800
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	10350 4700 9850 4700
+Wire Wire Line
+	8950 4700 9250 4700
+Wire Wire Line
+	10350 3450 10350 3600
+$Comp
+L Device:R R24
+U 1 1 5DDF700F
+P 9900 3600
+F 0 "R24" H 9970 3646 50  0000 L CNN
+F 1 "100k" H 9970 3555 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 9830 3600 50  0001 C CNN
+F 3 "~" H 9900 3600 50  0001 C CNN
+	1    9900 3600
+	1    0    0    -1  
+$EndComp
+Connection ~ 9900 3450
+Wire Wire Line
+	9900 3450 10350 3450
+Wire Wire Line
+	10050 3800 9900 3800
+Wire Wire Line
+	9900 3800 9900 3750
+Wire Wire Line
+	9900 3800 9300 3800
+Wire Wire Line
+	9300 3800 9300 3550
+Wire Wire Line
+	9300 3550 8950 3550
+Connection ~ 9900 3800
+Wire Wire Line
+	8950 3450 9900 3450
+$Comp
+L lab_power_supply:Conn_Relay J3
+U 1 1 5DE25C13
+P 8750 3550
+F 0 "J3" H 8743 3233 50  0000 C CNN
+F 1 "Conn_Relay" H 8743 3324 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 8750 3550 50  0001 C CNN
+F 3 "~" H 8750 3550 50  0001 C CNN
+	1    8750 3550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D D7
+U 1 1 5DE2784A
+P 9550 4200
+F 0 "D7" H 9550 4416 50  0000 C CNN
+F 1 "D" H 9550 4325 50  0000 C CNN
+F 2 "Diodes_THT:D_DO-41_SOD81_P7.62mm_Horizontal" H 9550 4200 50  0001 C CNN
+F 3 "~" H 9550 4200 50  0001 C CNN
+	1    9550 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8950 3650 8950 4200
+Wire Wire Line
+	10350 4000 10350 4200
+Wire Wire Line
+	9400 4200 8950 4200
+Connection ~ 8950 4200
+Wire Wire Line
+	8950 4200 8950 4700
+Wire Wire Line
+	9700 4200 10350 4200
+Connection ~ 10350 4200
+Wire Wire Line
+	10350 4200 10350 4700
 $EndSCHEMATC
