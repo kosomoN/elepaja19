@@ -53,7 +53,7 @@ U 1 1 5DA97EB0
 P 8200 3800
 F 0 "Rs1" V 8280 3800 50  0000 C CNN
 F 1 "0.1" V 8200 3800 50  0000 C CNN
-F 2 "Resistors_SMD:R_2816" V 8130 3800 50  0001 C CNN
+F 2 "Resistors_SMD:R_2512_HandSoldering" V 8130 3800 50  0001 C CNN
 F 3 "" H 8200 3800 50  0000 C CNN
 	1    8200 3800
 	1    0    0    -1  
@@ -174,13 +174,13 @@ F 3 "" H 7600 3300 50  0001 C CNN
 $EndComp
 $Comp
 L lab_power_supply:MAX9944 U1
-U 1 1 5DD19535
+U 2 1 5DD19535
 P 6650 1750
 F 0 "U1" H 6750 2050 50  0000 C CNN
 F 1 "MAX9944" H 6750 1950 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 6650 1750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 6650 1750 50  0001 C CNN
-	1    6650 1750
+	2    6650 1750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -392,12 +392,12 @@ F 3 "~" H 5000 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP C2
+L Device:C C2
 U 1 1 5DD2D3D7
 P 4700 2050
 F 0 "C2" H 4750 2150 50  0000 L CNN
 F 1 "10u" H 4750 1950 50  0000 L CNN
-F 2 "Capacitors_THT:CP_Radial_D8.0mm_P5.00mm" H 4738 1900 50  0001 C CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 4738 1900 50  0001 C CNN
 F 3 "~" H 4700 2050 50  0001 C CNN
 	1    4700 2050
 	1    0    0    -1  
@@ -840,13 +840,13 @@ Wire Wire Line
 	6350 2700 6300 2700
 $Comp
 L lab_power_supply:MAX9944 U1
-U 2 1 5DD2E469
+U 1 1 5DD2E469
 P 6650 2600
 F 0 "U1" H 6750 2900 50  0000 C CNN
 F 1 "MAX9944" H 6750 2800 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 6650 2600 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 6650 2600 50  0001 C CNN
-	2    6650 2600
+	1    6650 2600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -950,9 +950,9 @@ F 3 "~" H 3150 6200 50  0001 C CNN
 	1    3150 6200
 	0    1    1    0   
 $EndComp
-Text GLabel 3650 6200 2    60   Input ~ 0
-Iset
 Text GLabel 3650 6400 2    60   Input ~ 0
+Iset
+Text GLabel 3650 6200 2    60   Input ~ 0
 Vset
 Wire Wire Line
 	2650 6400 2400 6400
@@ -1115,8 +1115,8 @@ L Device:C C8
 U 1 1 5DD0A10F
 P 5450 5150
 F 0 "C8" V 5198 5150 50  0000 C CNN
-F 1 "C" V 5289 5150 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 5488 5000 50  0001 C CNN
+F 1 "10u" V 5289 5150 50  0000 C CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 5488 5000 50  0001 C CNN
 F 3 "~" H 5450 5150 50  0001 C CNN
 	1    5450 5150
 	0    1    1    0   
@@ -1126,8 +1126,8 @@ L Device:C C6
 U 1 1 5DD21243
 P 4900 3450
 F 0 "C6" H 5015 3496 50  0000 L CNN
-F 1 "C" H 5015 3405 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4938 3300 50  0001 C CNN
+F 1 "10u" H 5015 3405 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 4938 3300 50  0001 C CNN
 F 3 "~" H 4900 3450 50  0001 C CNN
 	1    4900 3450
 	1    0    0    -1  
