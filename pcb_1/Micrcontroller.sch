@@ -626,16 +626,12 @@ F 3 "" H 4200 5950 50  0001 C CNN
 	1    4200 5950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4200 5300 4200 5450
 Connection ~ 4200 5300
 Wire Wire Line
 	3200 5400 4450 5400
 Wire Wire Line
 	4450 5400 4450 5450
 Connection ~ 4450 5400
-Wire Wire Line
-	4450 5250 4450 5400
 Wire Wire Line
 	4200 5250 4200 5300
 $Comp
@@ -713,28 +709,6 @@ Wire Wire Line
 Wire Wire Line
 	4550 3750 4550 3650
 NoConn ~ 3200 5800
-$Comp
-L Connector_Generic:Conn_02x01 J7
-U 1 1 5DE6EFB6
-P 4450 5650
-F 0 "J7" V 4450 5750 50  0000 L CNN
-F 1 "THERM0" V 4550 5750 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4450 5650 50  0001 C CNN
-F 3 "~" H 4450 5650 50  0001 C CNN
-	1    4450 5650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x01 J8
-U 1 1 5DE6FB9D
-P 4200 5650
-F 0 "J8" V 4200 5500 50  0000 L CNN
-F 1 "THERM1" V 4300 5300 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4200 5650 50  0001 C CNN
-F 3 "~" H 4200 5650 50  0001 C CNN
-	1    4200 5650
-	0    1    1    0   
-$EndComp
 Connection ~ 9900 4700
 $Comp
 L Device:C C16
@@ -971,4 +945,33 @@ F 3 "~" H 7950 5050 50  0001 C CNN
 	1    7950 5050
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	4450 5250 4450 5350
+$Comp
+L Connector_Generic:Conn_02x01 J7
+U 1 1 5DE6EFB6
+P 4450 5750
+F 0 "J7" V 4450 5600 50  0000 L CNN
+F 1 "THERM0" V 4550 5400 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4450 5750 50  0001 C CNN
+F 3 "~" H 4450 5750 50  0001 C CNN
+	1    4450 5750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x01 J8
+U 1 1 5DE6FB9D
+P 4200 5750
+F 0 "J8" V 4200 5850 50  0000 L CNN
+F 1 "THERM1" V 4300 5850 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 4200 5750 50  0001 C CNN
+F 3 "~" H 4200 5750 50  0001 C CNN
+	1    4200 5750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4200 5300 4200 5450
+Connection ~ 4450 5350
+Wire Wire Line
+	4450 5350 4450 5400
 $EndSCHEMATC
