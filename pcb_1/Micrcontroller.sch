@@ -221,7 +221,7 @@ Wire Wire Line
 Text GLabel 3300 3650 1    60   Input ~ 0
 SLAVE_CS
 Wire Wire Line
-	3300 3650 3300 4300
+	3300 3650 3300 3850
 Wire Wire Line
 	6650 1700 6900 1700
 Wire Wire Line
@@ -631,7 +631,6 @@ Wire Wire Line
 	3200 5400 4450 5400
 Wire Wire Line
 	4450 5400 4450 5450
-Connection ~ 4450 5400
 Wire Wire Line
 	4200 5250 4200 5300
 $Comp
@@ -945,8 +944,6 @@ F 3 "~" H 7950 5050 50  0001 C CNN
 	1    7950 5050
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4450 5250 4450 5350
 $Comp
 L Connector_Generic:Conn_02x01 J7
 U 1 1 5DE6EFB6
@@ -971,7 +968,35 @@ F 3 "~" H 4200 5750 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4200 5300 4200 5450
-Connection ~ 4450 5350
+$Comp
+L Device:R R25
+U 1 1 5DDD49CA
+P 3450 3850
+F 0 "R25" H 3520 3896 50  0000 L CNN
+F 1 "100" H 3520 3805 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3380 3850 50  0001 C CNN
+F 3 "~" H 3450 3850 50  0001 C CNN
+	1    3450 3850
+	0    1    1    0   
+$EndComp
+Connection ~ 3300 3850
+Wire Wire Line
+	3300 3850 3300 4300
+$Comp
+L Connector_Generic:Conn_01x01 J9
+U 1 1 5DDD56A7
+P 3600 3650
+F 0 "J9" V 3700 3700 50  0000 R CNN
+F 1 "CS" V 3600 3850 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 3600 3650 50  0001 C CNN
+F 3 "~" H 3600 3650 50  0001 C CNN
+	1    3600 3650
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4450 5400
 Wire Wire Line
 	4450 5350 4450 5400
+Connection ~ 4450 5350
+Wire Wire Line
+	4450 5250 4450 5350
 $EndSCHEMATC
