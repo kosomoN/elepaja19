@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:RPi_Zero_pHat_Template-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -22,7 +21,7 @@ U 1 1 5516AE26
 P 4650 2200
 F 0 "J1" H 5400 2450 60  0000 C CNN
 F 1 "RPi_GPIO" H 5400 2350 60  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x20_Pitch2.54mm" H 4650 2200 60  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical" H 4650 2200 60  0001 C CNN
 F 3 "" H 4650 2200 60  0000 C CNN
 	1    4650 2200
 	1    0    0    -1  
@@ -33,7 +32,7 @@ U 1 1 5DD21625
 P 2700 3100
 F 0 "J2" H 2750 3417 50  0000 C CNN
 F 1 "Isolated_ISP" H 2750 3326 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 2700 3100 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 2700 3100 50  0001 C CNN
 F 3 "~" H 2700 3100 50  0001 C CNN
 	1    2700 3100
 	1    0    0    -1  
@@ -74,7 +73,7 @@ U 1 1 5DD148A1
 P 7750 3900
 F 0 "J3" H 7800 4217 50  0000 C CNN
 F 1 "Isolated_ISP" H 7800 4126 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 7750 3900 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 7750 3900 50  0001 C CNN
 F 3 "~" H 7750 3900 50  0001 C CNN
 	1    7750 3900
 	1    0    0    -1  
@@ -178,17 +177,6 @@ F 3 "" H 6350 3800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:GND #PWR0105
-U 1 1 5DD10F79
-P 6350 3100
-F 0 "#PWR0105" H 6350 2850 50  0001 C CNN
-F 1 "GND" V 6355 2972 50  0000 R CNN
-F 2 "" H 6350 3100 50  0001 C CNN
-F 3 "" H 6350 3100 50  0001 C CNN
-	1    6350 3100
-	0    -1   -1   0   
-$EndComp
-$Comp
 L power:GND #PWR0106
 U 1 1 5DD11473
 P 6350 2800
@@ -261,13 +249,13 @@ U 1 1 5DD1ACB6
 P 7750 2300
 F 0 "J4" H 7980 2350 50  0000 L CNN
 F 1 "Conn_Relay" H 7980 2259 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 7750 2300 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7750 2300 50  0001 C CNN
 F 3 "~" H 7750 2300 50  0001 C CNN
 	1    7750 2300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7550 2200 6350 2200
+	7550 2200 7500 2200
 $Comp
 L power:GND #PWR0111
 U 1 1 5DD118A5
@@ -290,4 +278,40 @@ Wire Wire Line
 	6350 2900 7400 2900
 Wire Wire Line
 	7400 2300 7400 2900
+$Comp
+L lab_power_supply:Conn_Relay J5
+U 1 1 5DD5F069
+P 7750 3000
+F 0 "J5" H 7980 3050 50  0000 L CNN
+F 1 "Conn_Relay" H 7980 2959 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7750 3000 50  0001 C CNN
+F 3 "~" H 7750 3000 50  0001 C CNN
+	1    7750 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7550 2900 7500 2900
+Wire Wire Line
+	7500 2900 7500 2200
+Connection ~ 7500 2200
+Wire Wire Line
+	7500 2200 6350 2200
+Wire Wire Line
+	7550 3000 6350 3000
+Wire Wire Line
+	7550 3100 7500 3100
+$Comp
+L power:GND #PWR0105
+U 1 1 5DD73A6B
+P 7500 3100
+F 0 "#PWR0105" H 7500 2850 50  0001 C CNN
+F 1 "GND" V 7505 2972 50  0000 R CNN
+F 2 "" H 7500 3100 50  0001 C CNN
+F 3 "" H 7500 3100 50  0001 C CNN
+	1    7500 3100
+	1    0    0    -1  
+$EndComp
+Connection ~ 7500 3100
+Wire Wire Line
+	7500 3100 6350 3100
 $EndSCHEMATC
