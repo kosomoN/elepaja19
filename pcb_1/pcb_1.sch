@@ -266,8 +266,6 @@ Text GLabel 1100 6250 0    59   Input ~ 0
 DAC_SCK
 Text GLabel 1100 6400 0    59   Input ~ 0
 DAC_SDI
-Text GLabel 1100 6550 0    59   Input ~ 0
-DAC_CS
 Text Label 2050 5950 1    60   ~ 0
 DAC
 $Comp
@@ -1312,4 +1310,6 @@ F 3 "~" H 10250 3800 50  0001 C CNN
 	1    10250 3800
 	1    0    0    1   
 $EndComp
+Text GLabel 1100 6550 0    59   Input ~ 0
+DAC_CS
 $EndSCHEMATC
