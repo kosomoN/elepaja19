@@ -1,0 +1,231 @@
+EESchema Schematic File Version 4
+LIBS:pcb_fpanel2-cache
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L fpanel_symbols:SW_Push_LED SW2
+U 1 1 5DD5BF8A
+P 5050 3100
+F 0 "SW2" H 5050 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 5050 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 5050 3400 50  0001 C CNN
+F 3 "~" H 5050 3400 50  0001 C CNN
+	1    5050 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L fpanel_symbols:SW_Push_LED SW3
+U 1 1 5DD5E9E2
+P 6000 3100
+F 0 "SW3" H 6000 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 6000 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 6000 3400 50  0001 C CNN
+F 3 "~" H 6000 3400 50  0001 C CNN
+	1    6000 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L fpanel_symbols:SW_Push_LED SW4
+U 1 1 5DD949E9
+P 6900 3100
+F 0 "SW4" H 6900 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 6900 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 6900 3400 50  0001 C CNN
+F 3 "~" H 6900 3400 50  0001 C CNN
+	1    6900 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L fpanel_symbols:SW_Push_LED SW5
+U 1 1 5DD949F3
+P 7850 3100
+F 0 "SW5" H 7850 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 7850 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 7850 3400 50  0001 C CNN
+F 3 "~" H 7850 3400 50  0001 C CNN
+	1    7850 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D3
+U 1 1 5DD9B852
+P 5650 2850
+F 0 "D3" V 5696 2771 50  0000 R CNN
+F 1 "D" V 5605 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 5650 2850 50  0001 C CNN
+F 3 "~" H 5650 2850 50  0001 C CNN
+	1    5650 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D4
+U 1 1 5DD9DE5F
+P 6600 2850
+F 0 "D4" V 6646 2771 50  0000 R CNN
+F 1 "D" V 6555 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 6600 2850 50  0001 C CNN
+F 3 "~" H 6600 2850 50  0001 C CNN
+	1    6600 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D5
+U 1 1 5DDA0CCC
+P 7550 2850
+F 0 "D5" V 7596 2771 50  0000 R CNN
+F 1 "D" V 7505 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7550 2850 50  0001 C CNN
+F 3 "~" H 7550 2850 50  0001 C CNN
+	1    7550 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D1
+U 1 1 5DDAB39F
+P 3800 2850
+F 0 "D1" V 3846 2771 50  0000 R CNN
+F 1 "D" V 3755 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 3800 2850 50  0001 C CNN
+F 3 "~" H 3800 2850 50  0001 C CNN
+	1    3800 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D2
+U 1 1 5DDAB395
+P 4750 2850
+F 0 "D2" V 4796 2771 50  0000 R CNN
+F 1 "D" V 4705 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 4750 2850 50  0001 C CNN
+F 3 "~" H 4750 2850 50  0001 C CNN
+	1    4750 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L fpanel_symbols:SW_Push_LED SW1
+U 1 1 5DD5A756
+P 4100 3100
+F 0 "SW1" H 4100 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 4100 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 4100 3400 50  0001 C CNN
+F 3 "~" H 4100 3400 50  0001 C CNN
+	1    4100 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7550 2700 6600 2700
+Connection ~ 4750 2700
+Wire Wire Line
+	4750 2700 3800 2700
+Connection ~ 5650 2700
+Wire Wire Line
+	5650 2700 4750 2700
+Connection ~ 6600 2700
+Wire Wire Line
+	6600 2700 5650 2700
+Wire Wire Line
+	3900 3000 3800 3000
+Wire Wire Line
+	4850 3000 4750 3000
+Wire Wire Line
+	5800 3000 5650 3000
+Wire Wire Line
+	6700 3000 6600 3000
+Wire Wire Line
+	7650 3000 7550 3000
+Wire Wire Line
+	4300 3000 4450 3000
+Wire Wire Line
+	4450 3000 4450 3950
+Wire Wire Line
+	5250 3000 5400 3000
+Wire Wire Line
+	6350 3000 6200 3000
+Wire Wire Line
+	7100 3000 7250 3000
+Wire Wire Line
+	8050 3000 8200 3000
+Wire Wire Line
+	4850 3100 4750 3100
+Wire Wire Line
+	4750 3100 4750 3350
+Wire Wire Line
+	3900 3100 3800 3100
+Wire Wire Line
+	3800 3100 3800 3350
+Wire Wire Line
+	4300 3100 4300 3600
+Wire Wire Line
+	5250 3100 5250 3750
+Wire Wire Line
+	4750 3350 3800 3350
+$Comp
+L Connector_Generic:Conn_01x09 J1
+U 1 1 5DD72545
+P 3750 4600
+F 0 "J1" V 3875 4596 50  0000 C CNN
+F 1 "Conn_01x09" V 3966 4596 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x09_Pitch2.54mm" H 3750 4600 50  0001 C CNN
+F 3 "~" H 3750 4600 50  0001 C CNN
+	1    3750 4600
+	0    1    1    0   
+$EndComp
+Connection ~ 3800 3350
+Wire Wire Line
+	4450 3950 3750 3950
+Wire Wire Line
+	3750 3950 3750 4400
+Wire Wire Line
+	5400 4050 3850 4050
+Wire Wire Line
+	3850 4050 3850 4400
+Wire Wire Line
+	5400 3000 5400 4050
+Wire Wire Line
+	6350 4150 3950 4150
+Wire Wire Line
+	3950 4150 3950 4400
+Wire Wire Line
+	6350 3000 6350 4150
+Wire Wire Line
+	7250 4250 4050 4250
+Wire Wire Line
+	4050 4250 4050 4400
+Wire Wire Line
+	7250 3000 7250 4250
+Wire Wire Line
+	8200 4350 4150 4350
+Wire Wire Line
+	4150 4350 4150 4400
+Wire Wire Line
+	8200 3000 8200 4350
+Wire Wire Line
+	3800 2700 3650 2700
+Wire Wire Line
+	3650 2700 3650 4400
+Connection ~ 3800 2700
+Wire Wire Line
+	3350 3750 3350 4400
+Wire Wire Line
+	3350 3750 5250 3750
+Wire Wire Line
+	3550 4400 3550 3600
+Wire Wire Line
+	3550 3600 4300 3600
+Wire Wire Line
+	3450 4400 3450 3350
+Wire Wire Line
+	3450 3350 3800 3350
+$EndSCHEMATC
