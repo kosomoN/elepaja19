@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name pcb_fpanel-cache)(type Legacy)(uri C:/Users/Juha/Documents/Aalto/elektroniikkapaja/elepaja/pcb_fpanel/pcb_fpanel-cache.lib)(options "")(descr ""))
+  (lib (name fpanel_symbols)(type Legacy)(uri C:/Users/Juha/Documents/Aalto/elektroniikkapaja/elepaja/pcb_fpanel/fpanel_symbols.lib)(options "")(descr ""))
 )
