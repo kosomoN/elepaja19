@@ -467,19 +467,8 @@ column_5
 $Comp
 L Device:R R1
 U 1 1 5DDCA21F
-P 2900 2950
-F 0 "R1" V 2693 2950 50  0000 C CNN
-F 1 "R" V 2784 2950 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 2950 50  0001 C CNN
-F 3 "~" H 2900 2950 50  0001 C CNN
-	1    2900 2950
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 5DDCC305
 P 2900 3150
-F 0 "R4" V 2693 3150 50  0000 C CNN
+F 0 "R1" V 2693 3150 50  0000 C CNN
 F 1 "R" V 2784 3150 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3150 50  0001 C CNN
 F 3 "~" H 2900 3150 50  0001 C CNN
@@ -487,30 +476,41 @@ F 3 "~" H 2900 3150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R2
-U 1 1 5DDDD664
-P 2900 2800
-F 0 "R2" V 2693 2800 50  0000 C CNN
-F 1 "R" V 2784 2800 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 2800 50  0001 C CNN
-F 3 "~" H 2900 2800 50  0001 C CNN
-	1    2900 2800
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 5DDDEDFE
+L Device:R R4
+U 1 1 5DDCC305
 P 2900 3350
-F 0 "R3" V 2693 3350 50  0000 C CNN
+F 0 "R4" V 2693 3350 50  0000 C CNN
 F 1 "R" V 2784 3350 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3350 50  0001 C CNN
 F 3 "~" H 2900 3350 50  0001 C CNN
 	1    2900 3350
 	0    1    1    0   
 $EndComp
-Text GLabel 3050 2950 2    50   Input ~ 0
+$Comp
+L Device:R R2
+U 1 1 5DDDD664
+P 2900 3000
+F 0 "R2" V 2693 3000 50  0000 C CNN
+F 1 "R" V 2784 3000 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3000 50  0001 C CNN
+F 3 "~" H 2900 3000 50  0001 C CNN
+	1    2900 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5DDDEDFE
+P 2900 3550
+F 0 "R3" V 2693 3550 50  0000 C CNN
+F 1 "R" V 2784 3550 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3550 50  0001 C CNN
+F 3 "~" H 2900 3550 50  0001 C CNN
+	1    2900 3550
+	0    1    1    0   
+$EndComp
+Text GLabel 3050 3150 2    50   Input ~ 0
 led_1
-Text GLabel 3050 2800 2    50   Input ~ 0
+Text GLabel 3050 3000 2    50   Input ~ 0
 led_2
 Text GLabel 3850 3900 0    50   Input ~ 0
 led_3
@@ -608,12 +608,12 @@ Wire Wire Line
 	7300 1850 3850 1850
 Wire Wire Line
 	6350 1950 3850 1950
-Text GLabel 3050 3150 2    50   Input ~ 0
+Text GLabel 3050 3350 2    50   Input ~ 0
 led_3
 Wire Wire Line
-	2500 2850 1900 2850
+	2500 3050 1900 3050
 Wire Wire Line
-	2750 3350 2600 3350
+	2750 3550 2600 3550
 Text GLabel 1900 1800 2    50   Input ~ 0
 column_1
 Text GLabel 1900 1900 2    50   Input ~ 0
@@ -628,9 +628,9 @@ Text GLabel 1900 1600 2    50   Input ~ 0
 row_1
 Text GLabel 1900 2000 2    50   Input ~ 0
 row_2
-Text GLabel 1900 3250 2    50   Input ~ 0
+Text GLabel 1900 3450 2    50   Input ~ 0
 row_3
-Text GLabel 1900 3350 2    50   Input ~ 0
+Text GLabel 1900 3550 2    50   Input ~ 0
 row_4
 Text GLabel 1900 1700 2    50   Input ~ 0
 row_5
@@ -684,34 +684,30 @@ row_2
 $Comp
 L Device:Rotary_Encoder_Switch SW1
 U 1 1 5DE16565
-P 2750 3900
-F 0 "SW1" H 2750 4267 50  0000 C CNN
-F 1 "Rotary_Encoder_Switch" H 2750 4176 50  0000 C CNN
-F 2 "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm" H 2600 4060 50  0001 C CNN
-F 3 "~" H 2750 4160 50  0001 C CNN
-	1    2750 3900
+P 3250 2600
+F 0 "SW1" H 3250 2967 50  0000 C CNN
+F 1 "Rotary_Encoder_Switch" H 3250 2876 50  0000 C CNN
+F 2 "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm" H 3100 2760 50  0001 C CNN
+F 3 "~" H 3250 2860 50  0001 C CNN
+	1    3250 2600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2450 3800 2300 3800
-Wire Wire Line
-	2200 4000 2450 4000
 $Comp
 L power:GNDD #PWR0105
 U 1 1 5DE3332B
-P 1950 4000
-F 0 "#PWR0105" H 1950 3750 50  0001 C CNN
-F 1 "GNDD" H 1954 3845 50  0000 C CNN
-F 2 "" H 1950 4000 50  0001 C CNN
-F 3 "" H 1950 4000 50  0001 C CNN
-	1    1950 4000
+P 2450 2700
+F 0 "#PWR0105" H 2450 2450 50  0001 C CNN
+F 1 "GNDD" H 2454 2545 50  0000 C CNN
+F 2 "" H 2450 2700 50  0001 C CNN
+F 3 "" H 2450 2700 50  0001 C CNN
+	1    2450 2700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1950 4000 1950 3900
+	2450 2700 2450 2600
 Wire Wire Line
-	1950 3900 2450 3900
-Text GLabel 3050 3350 2    50   Input ~ 0
+	2450 2600 2950 2600
+Text GLabel 3050 3550 2    50   Input ~ 0
 led_4
 Wire Wire Line
 	7750 5650 7850 5650
@@ -756,23 +752,23 @@ F 3 "~" H 1700 3050 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2600 3150 2600 3350
+	2600 3350 2600 3550
 Wire Wire Line
-	1900 3150 2600 3150
+	1900 3350 2600 3350
 Wire Wire Line
-	2750 3150 2750 3050
+	2750 3350 2750 3250
 Wire Wire Line
-	2750 3050 1900 3050
+	2750 3250 1900 3250
 Wire Wire Line
-	2500 2950 2750 2950
+	2500 3150 2750 3150
 Wire Wire Line
-	2500 2850 2500 2950
+	2500 3050 2500 3150
 Wire Wire Line
-	1900 2950 2450 2950
+	1900 3150 2450 3150
 Wire Wire Line
-	2450 2950 2450 2800
+	2450 3150 2450 3000
 Wire Wire Line
-	2450 2800 2750 2800
+	2450 3000 2750 3000
 $Comp
 L power:GNDD #PWR0106
 U 1 1 5DE8F53B
@@ -796,11 +792,15 @@ F 3 "" H 1900 2750 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	2200 3450 1900 3450
+	2600 2700 2950 2700
 Wire Wire Line
-	2200 3450 2200 4000
+	2200 2500 2950 2500
 Wire Wire Line
-	2300 3800 2300 3550
+	2200 2850 1900 2850
 Wire Wire Line
-	2300 3550 1900 3550
+	2200 2500 2200 2850
+Wire Wire Line
+	2600 2700 2600 2950
+Wire Wire Line
+	2600 2950 1900 2950
 $EndSCHEMATC
