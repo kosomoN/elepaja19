@@ -28,8 +28,19 @@ $EndComp
 $Comp
 L fpanel_symbols:SW_Push_LED SW3
 U 1 1 5DD5E9E2
+P 7900 3100
+F 0 "SW3" H 7900 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 7900 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 7900 3400 50  0001 C CNN
+F 3 "~" H 7900 3400 50  0001 C CNN
+	1    7900 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L fpanel_symbols:SW_Push_LED SW4
+U 1 1 5DD949E9
 P 6000 3100
-F 0 "SW3" H 6000 3485 50  0000 C CNN
+F 0 "SW4" H 6000 3485 50  0000 C CNN
 F 1 "SW_Push_LED" H 6000 3394 50  0000 C CNN
 F 2 "MX_Alps_Hybrid:MX-1U" H 6000 3400 50  0001 C CNN
 F 3 "~" H 6000 3400 50  0001 C CNN
@@ -37,58 +48,47 @@ F 3 "~" H 6000 3400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L fpanel_symbols:SW_Push_LED SW4
-U 1 1 5DD949E9
-P 6900 3100
-F 0 "SW4" H 6900 3485 50  0000 C CNN
-F 1 "SW_Push_LED" H 6900 3394 50  0000 C CNN
-F 2 "MX_Alps_Hybrid:MX-1U" H 6900 3400 50  0001 C CNN
-F 3 "~" H 6900 3400 50  0001 C CNN
-	1    6900 3100
-	1    0    0    -1  
-$EndComp
-$Comp
 L fpanel_symbols:SW_Push_LED SW5
 U 1 1 5DD949F3
-P 7850 3100
-F 0 "SW5" H 7850 3485 50  0000 C CNN
-F 1 "SW_Push_LED" H 7850 3394 50  0000 C CNN
-F 2 "MX_Alps_Hybrid:MX-1U" H 7850 3400 50  0001 C CNN
-F 3 "~" H 7850 3400 50  0001 C CNN
-	1    7850 3100
+P 6750 3100
+F 0 "SW5" H 6750 3485 50  0000 C CNN
+F 1 "SW_Push_LED" H 6750 3394 50  0000 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U" H 6750 3400 50  0001 C CNN
+F 3 "~" H 6750 3400 50  0001 C CNN
+	1    6750 3100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:D D3
 U 1 1 5DD9B852
-P 5650 2850
-F 0 "D3" V 5696 2771 50  0000 R CNN
-F 1 "D" V 5605 2771 50  0000 R CNN
-F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 5650 2850 50  0001 C CNN
-F 3 "~" H 5650 2850 50  0001 C CNN
-	1    5650 2850
+P 7550 2850
+F 0 "D3" V 7596 2771 50  0000 R CNN
+F 1 "D" V 7505 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7550 2850 50  0001 C CNN
+F 3 "~" H 7550 2850 50  0001 C CNN
+	1    7550 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:D D4
 U 1 1 5DD9DE5F
-P 6600 2850
-F 0 "D4" V 6646 2771 50  0000 R CNN
-F 1 "D" V 6555 2771 50  0000 R CNN
-F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 6600 2850 50  0001 C CNN
-F 3 "~" H 6600 2850 50  0001 C CNN
-	1    6600 2850
+P 5700 2850
+F 0 "D4" V 5746 2771 50  0000 R CNN
+F 1 "D" V 5655 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 5700 2850 50  0001 C CNN
+F 3 "~" H 5700 2850 50  0001 C CNN
+	1    5700 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:D D5
 U 1 1 5DDA0CCC
-P 7550 2850
-F 0 "D5" V 7596 2771 50  0000 R CNN
-F 1 "D" V 7505 2771 50  0000 R CNN
-F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7550 2850 50  0001 C CNN
-F 3 "~" H 7550 2850 50  0001 C CNN
-	1    7550 2850
+P 6450 2850
+F 0 "D5" V 6496 2771 50  0000 R CNN
+F 1 "D" V 6405 2771 50  0000 R CNN
+F 2 "Diodes_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 6450 2850 50  0001 C CNN
+F 3 "~" H 6450 2850 50  0001 C CNN
+	1    6450 2850
 	0    1    1    0   
 $EndComp
 $Comp
@@ -124,27 +124,19 @@ F 3 "~" H 4100 3400 50  0001 C CNN
 	1    4100 3100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7550 2700 6600 2700
 Connection ~ 4750 2700
 Wire Wire Line
 	4750 2700 3800 2700
-Connection ~ 5650 2700
-Wire Wire Line
-	5650 2700 4750 2700
-Connection ~ 6600 2700
-Wire Wire Line
-	6600 2700 5650 2700
 Wire Wire Line
 	3900 3000 3800 3000
 Wire Wire Line
 	4850 3000 4750 3000
 Wire Wire Line
-	5800 3000 5650 3000
+	7700 3000 7550 3000
 Wire Wire Line
-	6700 3000 6600 3000
+	5800 3000 5700 3000
 Wire Wire Line
-	7650 3000 7550 3000
+	6550 3000 6450 3000
 Wire Wire Line
 	4300 3000 4450 3000
 Wire Wire Line
@@ -153,10 +145,6 @@ Wire Wire Line
 	5250 3000 5400 3000
 Wire Wire Line
 	6350 3000 6200 3000
-Wire Wire Line
-	7100 3000 7250 3000
-Wire Wire Line
-	8050 3000 8200 3000
 Wire Wire Line
 	4850 3100 4750 3100
 Wire Wire Line
@@ -217,44 +205,44 @@ Wire Wire Line
 	3450 4400 3450 3350
 Wire Wire Line
 	3450 3350 3800 3350
-Text GLabel 5400 5600 1    50   Input ~ 0
+Text GLabel 6800 5600 1    50   Input ~ 0
 row_1
-Text GLabel 5600 5600 1    50   Input ~ 0
+Text GLabel 6700 5600 1    50   Input ~ 0
 column_1
-Text GLabel 5500 5600 1    50   Input ~ 0
+Text GLabel 6600 5600 1    50   Input ~ 0
 column_2
-Text GLabel 5300 5600 1    50   Input ~ 0
+Text GLabel 6300 5600 1    50   Input ~ 0
 column_3
-Text GLabel 5200 5600 1    50   Input ~ 0
+Text GLabel 6200 5600 1    50   Input ~ 0
 column_4
-Text GLabel 5100 5600 1    50   Input ~ 0
+Text GLabel 6400 5600 1    50   Input ~ 0
 column_5
 $Comp
 L Connector_Generic:Conn_01x10 J1
 U 1 1 5DD8142F
-P 5500 5800
-F 0 "J1" V 5625 5746 50  0000 C CNN
-F 1 "Conn_01x10" V 5716 5746 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 5500 5800 50  0001 C CNN
-F 3 "~" H 5500 5800 50  0001 C CNN
-	1    5500 5800
+P 6700 5800
+F 0 "J1" V 6825 5746 50  0000 C CNN
+F 1 "Conn_01x10" V 6916 5746 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 6700 5800 50  0001 C CNN
+F 3 "~" H 6700 5800 50  0001 C CNN
+	1    6700 5800
 	0    1    1    0   
 $EndComp
-Text GLabel 5000 5600 1    50   Input ~ 0
+Text GLabel 6500 5600 1    50   Input ~ 0
 row_2
-Text GLabel 5900 5600 1    50   Input ~ 0
+Text GLabel 6900 5600 1    50   Input ~ 0
 led_1
-Text GLabel 5800 5600 1    50   Input ~ 0
+Text GLabel 7000 5600 1    50   Input ~ 0
 led_2
 $Comp
 L power:GNDD #PWR0101
 U 1 1 5DD848AD
-P 5700 5600
-F 0 "#PWR0101" H 5700 5350 50  0001 C CNN
-F 1 "GNDD" H 5704 5445 50  0000 C CNN
-F 2 "" H 5700 5600 50  0001 C CNN
-F 3 "" H 5700 5600 50  0001 C CNN
-	1    5700 5600
+P 7100 5600
+F 0 "#PWR0101" H 7100 5350 50  0001 C CNN
+F 1 "GNDD" H 7104 5445 50  0000 C CNN
+F 2 "" H 7100 5600 50  0001 C CNN
+F 3 "" H 7100 5600 50  0001 C CNN
+	1    7100 5600
 	-1   0    0    1   
 $EndComp
 Text GLabel 3350 4400 3    50   Input ~ 0
@@ -415,4 +403,19 @@ Wire Wire Line
 Connection ~ 5650 1550
 Wire Wire Line
 	5650 1550 6550 1550
+Connection ~ 6450 2700
+Wire Wire Line
+	6450 2700 7550 2700
+Wire Wire Line
+	6950 3000 7250 3000
+Wire Wire Line
+	8200 3000 8100 3000
+Connection ~ 8100 3000
+Wire Wire Line
+	8100 3000 8050 3000
+Wire Wire Line
+	4750 2700 5700 2700
+Connection ~ 5700 2700
+Wire Wire Line
+	5700 2700 6450 2700
 $EndSCHEMATC
