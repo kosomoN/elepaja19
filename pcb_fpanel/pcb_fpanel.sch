@@ -405,12 +405,12 @@ Wire Wire Line
 $Comp
 L power:GNDD #PWR0101
 U 1 1 5DDABE70
-P 1150 2700
-F 0 "#PWR0101" H 1150 2450 50  0001 C CNN
-F 1 "GNDD" H 1154 2545 50  0000 C CNN
-F 2 "" H 1150 2700 50  0001 C CNN
-F 3 "" H 1150 2700 50  0001 C CNN
-	1    1150 2700
+P 950 3750
+F 0 "#PWR0101" H 950 3500 50  0001 C CNN
+F 1 "GNDD" H 954 3595 50  0000 C CNN
+F 2 "" H 950 3750 50  0001 C CNN
+F 3 "" H 950 3750 50  0001 C CNN
+	1    950  3750
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -467,54 +467,54 @@ column_5
 $Comp
 L Device:R R1
 U 1 1 5DDCA21F
-P 2900 3400
-F 0 "R1" V 2693 3400 50  0000 C CNN
-F 1 "R" V 2784 3400 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3400 50  0001 C CNN
-F 3 "~" H 2900 3400 50  0001 C CNN
-	1    2900 3400
+P 2900 2950
+F 0 "R1" V 2693 2950 50  0000 C CNN
+F 1 "R" V 2784 2950 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 2950 50  0001 C CNN
+F 3 "~" H 2900 2950 50  0001 C CNN
+	1    2900 2950
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R4
 U 1 1 5DDCC305
-P 2900 1600
-F 0 "R4" V 2693 1600 50  0000 C CNN
-F 1 "R" V 2784 1600 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 1600 50  0001 C CNN
-F 3 "~" H 2900 1600 50  0001 C CNN
-	1    2900 1600
+P 2900 3150
+F 0 "R4" V 2693 3150 50  0000 C CNN
+F 1 "R" V 2784 3150 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3150 50  0001 C CNN
+F 3 "~" H 2900 3150 50  0001 C CNN
+	1    2900 3150
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R2
 U 1 1 5DDDD664
-P 2900 3000
-F 0 "R2" V 2693 3000 50  0000 C CNN
-F 1 "R" V 2784 3000 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3000 50  0001 C CNN
-F 3 "~" H 2900 3000 50  0001 C CNN
-	1    2900 3000
+P 2900 2800
+F 0 "R2" V 2693 2800 50  0000 C CNN
+F 1 "R" V 2784 2800 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 2800 50  0001 C CNN
+F 3 "~" H 2900 2800 50  0001 C CNN
+	1    2900 2800
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R3
 U 1 1 5DDDEDFE
-P 2900 1950
-F 0 "R3" V 2693 1950 50  0000 C CNN
-F 1 "R" V 2784 1950 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 1950 50  0001 C CNN
-F 3 "~" H 2900 1950 50  0001 C CNN
-	1    2900 1950
+P 2900 3350
+F 0 "R3" V 2693 3350 50  0000 C CNN
+F 1 "R" V 2784 3350 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3350 50  0001 C CNN
+F 3 "~" H 2900 3350 50  0001 C CNN
+	1    2900 3350
 	0    1    1    0   
 $EndComp
-Text GLabel 3050 3400 2    50   Input ~ 0
+Text GLabel 3050 2950 2    50   Input ~ 0
 led_1
-Text GLabel 3050 3000 2    50   Input ~ 0
+Text GLabel 3050 2800 2    50   Input ~ 0
 led_2
-Text GLabel 3850 3700 0    50   Input ~ 0
-led_3
 Text GLabel 3850 3900 0    50   Input ~ 0
+led_3
+Text GLabel 3850 3700 0    50   Input ~ 0
 led_4
 $Comp
 L Connector_Generic:Conn_01x04 J2
@@ -588,17 +588,17 @@ Wire Wire Line
 Wire Wire Line
 	9150 4950 9150 4600
 Connection ~ 9150 4600
-Text GLabel 1150 2400 2    50   Input ~ 0
+Text GLabel 950  3450 2    50   Input ~ 0
 row_1
-Text GLabel 1150 1800 2    50   Input ~ 0
+Text GLabel 950  3350 2    50   Input ~ 0
 column_1
-Text GLabel 1150 1900 2    50   Input ~ 0
+Text GLabel 950  3250 2    50   Input ~ 0
 column_2
-Text GLabel 1150 2200 2    50   Input ~ 0
+Text GLabel 950  2950 2    50   Input ~ 0
 column_3
-Text GLabel 1150 2300 2    50   Input ~ 0
+Text GLabel 950  2850 2    50   Input ~ 0
 column_4
-Text GLabel 1150 2100 2    50   Input ~ 0
+Text GLabel 950  3050 2    50   Input ~ 0
 column_5
 Wire Wire Line
 	9150 1650 3850 1650
@@ -608,39 +608,12 @@ Wire Wire Line
 	7300 1850 3850 1850
 Wire Wire Line
 	6350 1950 3850 1950
-$Comp
-L power:GNDD #PWR0104
-U 1 1 5DD920B3
-P 1900 3100
-F 0 "#PWR0104" H 1900 2850 50  0001 C CNN
-F 1 "GNDD" H 1904 2945 50  0000 C CNN
-F 2 "" H 1900 3100 50  0001 C CNN
-F 3 "" H 1900 3100 50  0001 C CNN
-	1    1900 3100
-	1    0    0    -1  
-$EndComp
-Text GLabel 3050 1600 2    50   Input ~ 0
+Text GLabel 3050 3150 2    50   Input ~ 0
 led_3
 Wire Wire Line
-	2750 3400 2400 3400
+	2500 2850 1900 2850
 Wire Wire Line
-	2750 3000 2500 3000
-Wire Wire Line
-	2500 3000 2500 2500
-Wire Wire Line
-	2500 2500 1900 2500
-Wire Wire Line
-	2750 1950 2600 1950
-Wire Wire Line
-	2600 1950 2600 1700
-Wire Wire Line
-	2600 1700 1900 1700
-Wire Wire Line
-	1900 1600 2750 1600
-Wire Wire Line
-	2400 3400 2400 2600
-Wire Wire Line
-	2400 2600 1900 2600
+	2750 3350 2600 3350
 Text GLabel 1900 1800 2    50   Input ~ 0
 column_1
 Text GLabel 1900 1900 2    50   Input ~ 0
@@ -651,29 +624,29 @@ Text GLabel 1900 2300 2    50   Input ~ 0
 column_4
 Text GLabel 1900 2100 2    50   Input ~ 0
 column_5
-Text GLabel 1900 2400 2    50   Input ~ 0
+Text GLabel 1900 1600 2    50   Input ~ 0
 row_1
 Text GLabel 1900 2000 2    50   Input ~ 0
 row_2
-Text GLabel 1900 2900 2    50   Input ~ 0
+Text GLabel 1900 3250 2    50   Input ~ 0
 row_3
-Text GLabel 1900 3000 2    50   Input ~ 0
+Text GLabel 1900 3350 2    50   Input ~ 0
 row_4
-Text GLabel 1900 1500 2    50   Input ~ 0
+Text GLabel 1900 1700 2    50   Input ~ 0
 row_5
-Text GLabel 1150 2600 2    50   Input ~ 0
+Text GLabel 950  3550 2    50   Input ~ 0
 led_1
-Text GLabel 1150 2500 2    50   Input ~ 0
+Text GLabel 950  3650 2    50   Input ~ 0
 led_2
 $Comp
 L Connector_Generic:Conn_01x10 J3
 U 1 1 5DDFA015
-P 950 2300
-F 0 "J3" V 1167 2246 50  0000 C CNN
-F 1 "Conn_01x10" V 1076 2246 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 950 2300 50  0001 C CNN
-F 3 "~" H 950 2300 50  0001 C CNN
-	1    950  2300
+P 750 3350
+F 0 "J3" V 967 3296 50  0000 C CNN
+F 1 "Conn_01x10" V 876 3296 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 750 3350 50  0001 C CNN
+F 3 "~" H 750 3350 50  0001 C CNN
+	1    750  3350
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -706,7 +679,7 @@ Wire Wire Line
 	3850 2400 8500 2400
 Wire Wire Line
 	8200 1750 8200 3650
-Text GLabel 1150 2000 2    50   Input ~ 0
+Text GLabel 950  3150 2    50   Input ~ 0
 row_2
 $Comp
 L Device:Rotary_Encoder_Switch SW1
@@ -718,17 +691,6 @@ F 2 "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm" H 2600 4060 
 F 3 "~" H 2750 4160 50  0001 C CNN
 	1    2750 3900
 	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x18 J1
-U 1 1 5DE1ABA2
-P 1700 2300
-F 0 "J1" H 1618 1175 50  0000 C CNN
-F 1 "Conn_01x18" H 1618 1266 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x18_Pitch2.54mm" H 1700 2300 50  0001 C CNN
-F 3 "~" H 1700 2300 50  0001 C CNN
-	1    1700 2300
-	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	2450 3800 2300 3800
@@ -749,7 +711,7 @@ Wire Wire Line
 	1950 4000 1950 3900
 Wire Wire Line
 	1950 3900 2450 3900
-Text GLabel 3050 1950 2    50   Input ~ 0
+Text GLabel 3050 3350 2    50   Input ~ 0
 led_4
 Wire Wire Line
 	7750 5650 7850 5650
@@ -771,12 +733,74 @@ Wire Wire Line
 	7650 5750 7650 5800
 Wire Wire Line
 	7550 5250 7550 5800
+$Comp
+L Connector_Generic:Conn_01x12 J4
+U 1 1 5DDAB667
+P 1700 1800
+F 0 "J4" H 1618 975 50  0000 C CNN
+F 1 "Conn_01x12" H 1618 1066 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12_Pitch2.54mm" H 1700 1800 50  0001 C CNN
+F 3 "~" H 1700 1800 50  0001 C CNN
+	1    1700 1800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x12 J1
+U 1 1 5DDAEE46
+P 1700 3050
+F 0 "J1" H 1618 2225 50  0000 C CNN
+F 1 "Conn_01x12" H 1618 2316 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12_Pitch2.54mm" H 1700 3050 50  0001 C CNN
+F 3 "~" H 1700 3050 50  0001 C CNN
+	1    1700 3050
+	-1   0    0    1   
+$EndComp
 Wire Wire Line
-	2300 2700 1900 2700
+	2600 3150 2600 3350
 Wire Wire Line
-	2300 2700 2300 3800
+	1900 3150 2600 3150
 Wire Wire Line
-	2200 4000 2200 2800
+	2750 3150 2750 3050
 Wire Wire Line
-	2200 2800 1900 2800
+	2750 3050 1900 3050
+Wire Wire Line
+	2500 2950 2750 2950
+Wire Wire Line
+	2500 2850 2500 2950
+Wire Wire Line
+	1900 2950 2450 2950
+Wire Wire Line
+	2450 2950 2450 2800
+Wire Wire Line
+	2450 2800 2750 2800
+$Comp
+L power:GNDD #PWR0106
+U 1 1 5DE8F53B
+P 1900 1300
+F 0 "#PWR0106" H 1900 1050 50  0001 C CNN
+F 1 "GNDD" H 1904 1145 50  0000 C CNN
+F 2 "" H 1900 1300 50  0001 C CNN
+F 3 "" H 1900 1300 50  0001 C CNN
+	1    1900 1300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GNDD #PWR0104
+U 1 1 5DD920B3
+P 1900 2750
+F 0 "#PWR0104" H 1900 2500 50  0001 C CNN
+F 1 "GNDD" H 1904 2595 50  0000 C CNN
+F 2 "" H 1900 2750 50  0001 C CNN
+F 3 "" H 1900 2750 50  0001 C CNN
+	1    1900 2750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2200 3450 1900 3450
+Wire Wire Line
+	2200 3450 2200 4000
+Wire Wire Line
+	2300 3800 2300 3550
+Wire Wire Line
+	2300 3550 1900 3550
 $EndSCHEMATC
