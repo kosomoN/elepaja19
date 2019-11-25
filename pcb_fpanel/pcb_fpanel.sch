@@ -517,17 +517,6 @@ led_3
 Text GLabel 3850 3700 0    50   Input ~ 0
 led_4
 $Comp
-L Connector_Generic:Conn_01x04 J2
-U 1 1 5DDF0A73
-P 7650 6000
-F 0 "J2" V 7522 5712 50  0000 R CNN
-F 1 "Conn_01x04" V 7613 5712 50  0000 R CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 7650 6000 50  0001 C CNN
-F 3 "~" H 7650 6000 50  0001 C CNN
-	1    7650 6000
-	0    -1   1    0   
-$EndComp
-$Comp
 L Device:D D2
 U 1 1 5DDF280A
 P 7650 5200
@@ -563,10 +552,6 @@ $EndComp
 Wire Wire Line
 	5700 5250 7550 5250
 Connection ~ 5700 5250
-Wire Wire Line
-	7900 5350 7900 5400
-Wire Wire Line
-	7900 5400 7750 5400
 Wire Wire Line
 	7650 5050 7650 4950
 Wire Wire Line
@@ -705,12 +690,6 @@ Wire Wire Line
 	2450 2600 2950 2600
 Text GLabel 3050 3550 2    50   Input ~ 0
 led_4
-Wire Wire Line
-	7750 5650 7850 5650
-Wire Wire Line
-	7850 5650 7850 5800
-Wire Wire Line
-	7750 5400 7750 5650
 Wire Wire Line
 	7650 5700 7750 5700
 Wire Wire Line
@@ -868,5 +847,28 @@ F 2 "" H 1900 2650 50  0001 C CNN
 F 3 "" H 1900 2650 50  0001 C CNN
 	1    1900 2650
 	0    -1   -1   0   
+$EndComp
+Text GLabel 3550 2700 2    50   Input ~ 0
+row_5
+Text GLabel 3550 2500 2    50   Input ~ 0
+encoder_button
+Text GLabel 8300 5600 3    50   Input ~ 0
+encoder_button
+Wire Wire Line
+	7900 5550 8300 5550
+Wire Wire Line
+	8300 5550 8300 5600
+Wire Wire Line
+	7900 5350 7900 5550
+$Comp
+L Connector_Generic:Conn_01x03 J2
+U 1 1 5DDFDE7D
+P 7650 6000
+F 0 "J2" V 7522 5812 50  0000 R CNN
+F 1 "Conn_01x03" V 7613 5812 50  0000 R CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 7650 6000 50  0001 C CNN
+F 3 "~" H 7650 6000 50  0001 C CNN
+	1    7650 6000
+	0    -1   1    0   
 $EndComp
 $EndSCHEMATC
