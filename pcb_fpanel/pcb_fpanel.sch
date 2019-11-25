@@ -470,7 +470,7 @@ U 1 1 5DDCA21F
 P 2900 3150
 F 0 "R1" V 2693 3150 50  0000 C CNN
 F 1 "R" V 2784 3150 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3150 50  0001 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2830 3150 50  0001 C CNN
 F 3 "~" H 2900 3150 50  0001 C CNN
 	1    2900 3150
 	0    1    1    0   
@@ -481,7 +481,7 @@ U 1 1 5DDCC305
 P 2900 3350
 F 0 "R4" V 2693 3350 50  0000 C CNN
 F 1 "R" V 2784 3350 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3350 50  0001 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2830 3350 50  0001 C CNN
 F 3 "~" H 2900 3350 50  0001 C CNN
 	1    2900 3350
 	0    1    1    0   
@@ -492,7 +492,7 @@ U 1 1 5DDDD664
 P 2900 3000
 F 0 "R2" V 2693 3000 50  0000 C CNN
 F 1 "R" V 2784 3000 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3000 50  0001 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2830 3000 50  0001 C CNN
 F 3 "~" H 2900 3000 50  0001 C CNN
 	1    2900 3000
 	0    1    1    0   
@@ -503,7 +503,7 @@ U 1 1 5DDDEDFE
 P 2900 3550
 F 0 "R3" V 2693 3550 50  0000 C CNN
 F 1 "R" V 2784 3550 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 2830 3550 50  0001 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2830 3550 50  0001 C CNN
 F 3 "~" H 2900 3550 50  0001 C CNN
 	1    2900 3550
 	0    1    1    0   
@@ -590,9 +590,9 @@ Wire Wire Line
 Connection ~ 9150 4600
 Text GLabel 950  3450 2    50   Input ~ 0
 row_1
-Text GLabel 950  3350 2    50   Input ~ 0
-column_1
 Text GLabel 950  3250 2    50   Input ~ 0
+column_1
+Text GLabel 950  3150 2    50   Input ~ 0
 column_2
 Text GLabel 950  2950 2    50   Input ~ 0
 column_3
@@ -614,19 +614,15 @@ Wire Wire Line
 	2500 3050 1900 3050
 Wire Wire Line
 	2750 3550 2600 3550
-Text GLabel 1900 1800 2    50   Input ~ 0
-column_1
-Text GLabel 1900 1900 2    50   Input ~ 0
-column_2
-Text GLabel 1900 2200 2    50   Input ~ 0
+Text GLabel 2200 2000 2    50   Input ~ 0
 column_3
-Text GLabel 1900 2300 2    50   Input ~ 0
+Text GLabel 2200 1900 2    50   Input ~ 0
 column_4
-Text GLabel 1900 2100 2    50   Input ~ 0
+Text GLabel 2200 2100 2    50   Input ~ 0
 column_5
 Text GLabel 1900 1600 2    50   Input ~ 0
 row_1
-Text GLabel 1900 2000 2    50   Input ~ 0
+Text GLabel 1900 1800 2    50   Input ~ 0
 row_2
 Text GLabel 1900 3450 2    50   Input ~ 0
 row_3
@@ -679,7 +675,7 @@ Wire Wire Line
 	3850 2400 8500 2400
 Wire Wire Line
 	8200 1750 8200 3650
-Text GLabel 950  3150 2    50   Input ~ 0
+Text GLabel 950  3350 2    50   Input ~ 0
 row_2
 $Comp
 L Device:Rotary_Encoder_Switch SW1
@@ -729,17 +725,6 @@ Wire Wire Line
 	7650 5750 7650 5800
 Wire Wire Line
 	7550 5250 7550 5800
-$Comp
-L Connector_Generic:Conn_01x12 J4
-U 1 1 5DDAB667
-P 1700 1800
-F 0 "J4" H 1618 975 50  0000 C CNN
-F 1 "Conn_01x12" H 1618 1066 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x12_Pitch2.54mm" H 1700 1800 50  0001 C CNN
-F 3 "~" H 1700 1800 50  0001 C CNN
-	1    1700 1800
-	-1   0    0    1   
-$EndComp
 $Comp
 L Connector_Generic:Conn_01x12 J1
 U 1 1 5DDAEE46
@@ -803,4 +788,85 @@ Wire Wire Line
 	2600 2700 2600 2950
 Wire Wire Line
 	2600 2950 1900 2950
+$Comp
+L Device:R R7
+U 1 1 5DDCE610
+P 2050 2100
+F 0 "R7" V 1843 2100 50  0000 C CNN
+F 1 "R" V 1934 2100 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1980 2100 50  0001 C CNN
+F 3 "~" H 2050 2100 50  0001 C CNN
+	1    2050 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R8
+U 1 1 5DDCE7F9
+P 2050 2000
+F 0 "R8" V 1843 2000 50  0000 C CNN
+F 1 "R" V 1934 2000 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1980 2000 50  0001 C CNN
+F 3 "~" H 2050 2000 50  0001 C CNN
+	1    2050 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R9
+U 1 1 5DDCE9DD
+P 2050 1900
+F 0 "R9" V 1843 1900 50  0000 C CNN
+F 1 "R" V 1934 1900 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1980 1900 50  0001 C CNN
+F 3 "~" H 2050 1900 50  0001 C CNN
+	1    2050 1900
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 5DDCEBA7
+P 2050 2300
+F 0 "R5" V 1843 2300 50  0000 C CNN
+F 1 "R" V 1934 2300 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1980 2300 50  0001 C CNN
+F 3 "~" H 2050 2300 50  0001 C CNN
+	1    2050 2300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R6
+U 1 1 5DDCD87E
+P 2050 2200
+F 0 "R6" V 1843 2200 50  0000 C CNN
+F 1 "R" V 1934 2200 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 1980 2200 50  0001 C CNN
+F 3 "~" H 2050 2200 50  0001 C CNN
+	1    2050 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x12 J4
+U 1 1 5DDAB667
+P 1700 1800
+F 0 "J4" H 1618 975 50  0000 C CNN
+F 1 "Conn_01x12" H 1618 1066 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12_Pitch2.54mm" H 1700 1800 50  0001 C CNN
+F 3 "~" H 1700 1800 50  0001 C CNN
+	1    1700 1800
+	-1   0    0    1   
+$EndComp
+Text GLabel 2200 2200 2    50   Input ~ 0
+column_2
+Text GLabel 2200 2300 2    50   Input ~ 0
+column_1
+$Comp
+L power:GNDD #PWR0107
+U 1 1 5DDC030F
+P 1900 2650
+F 0 "#PWR0107" H 1900 2400 50  0001 C CNN
+F 1 "GNDD" H 1904 2495 50  0000 C CNN
+F 2 "" H 1900 2650 50  0001 C CNN
+F 3 "" H 1900 2650 50  0001 C CNN
+	1    1900 2650
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC

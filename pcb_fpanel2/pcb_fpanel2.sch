@@ -207,9 +207,9 @@ Wire Wire Line
 	3450 3350 3800 3350
 Text GLabel 6800 5600 1    50   Input ~ 0
 row_1
-Text GLabel 6700 5600 1    50   Input ~ 0
-column_1
 Text GLabel 6600 5600 1    50   Input ~ 0
+column_1
+Text GLabel 6500 5600 1    50   Input ~ 0
 column_2
 Text GLabel 6300 5600 1    50   Input ~ 0
 column_3
@@ -228,7 +228,7 @@ F 3 "~" H 6700 5800 50  0001 C CNN
 	1    6700 5800
 	0    1    1    0   
 $EndComp
-Text GLabel 6500 5600 1    50   Input ~ 0
+Text GLabel 6700 5600 1    50   Input ~ 0
 row_2
 Text GLabel 6900 5600 1    50   Input ~ 0
 led_1
