@@ -386,3 +386,6 @@ MigrationBackup/
 control_mc/*.elf
 control_mc/*.hex
 control_mc/*.d
+*.exe
+
+.vscode
