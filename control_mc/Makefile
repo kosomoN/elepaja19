@@ -9,7 +9,7 @@
 
 DEVICE     = atmega328pb
 CLOCK      = 8000000
-PROGRAMMER = -c arduino -P /dev/tty.usb* -b 19200 
+PROGRAMMER = -c avrispmkII -P usb -b 19200
 
 SRC := main.c
 OBJ := $(patsubst %.c,%.o,$(SRC))
@@ -20,15 +20,19 @@ DEP := $(patsubst %.c,%.d,$(SRC))
 
 # Tune the lines below only if you know what you are doing:
 
-AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
-CC = avr-gcc
-CFLAGS = -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -B ../../packs/gcc/dev/atmega328pb/ -I ../../packs/include/
+AVRDUDE 	= avrdude.exe -v $(PROGRAMMER) -p $(DEVICE)
+CC 			= avr-gcc
+CFLAGS		= -Wall -O2 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -B ../../packs/gcc/dev/atmega328pb/ -I ../../packs/include/
+FUSES      	= -U lfuse:w:0xe2:m -U hfuse:w:0xde:m -U efuse:w:0xf4:m
 
 # symbolic targets:
 all:	main.hex
 
 flash:	all
 	$(AVRDUDE) -U flash:w:main.hex:i
+
+fuse:
+	$(AVRDUDE) $(FUSES)
 
 # if you use a bootloader, change the command below appropriately:
 load: all
@@ -38,7 +42,7 @@ clean:
 	rm -f main.hex main.elf $(OBJ) $(DEP)
 
 main.elf: $(OBJ) $(DEP)
-	$(CC) -o main.elf $(OBJ)
+	$(CC) $(CFLAGS) -o main.elf $(OBJ)
 	avr-size -C main.elf
 
 main.hex: main.elf
