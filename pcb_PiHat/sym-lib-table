@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name Connector-ML)(type Legacy)(uri ${KIPRJMOD}/symbols/Connector-ML.lib)(options "")(descr ""))
   (lib (name lab_power_supply)(type Legacy)(uri ${KIPRJMOD}/../components/lab_power_supply.lib)(options "")(descr ""))
+  (lib (name SPUN02L-12)(type Legacy)(uri ${KIPRJMOD}/SPUN02L-12.lib)(options "")(descr ""))
 )
