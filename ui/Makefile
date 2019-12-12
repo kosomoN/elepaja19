@@ -159,7 +159,7 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     endif
 endif
 
-CFLAGS += $(INCLUDE_PATHS)
+CFLAGS += $(INCLUDE_PATHS) -D$(PLATFORM)
 
 # Define library paths containing required libs.
 LDFLAGS = -L. -L$(RAYLIB_RELEASE_PATH) -L$(RAYLIB_PATH)/src
