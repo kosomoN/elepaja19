@@ -34,6 +34,9 @@ flash:	all
 fuse:
 	$(AVRDUDE) $(FUSES)
 
+reset:
+	$(AVRDUDE) -Ulfuse:v:0xE2:m
+
 # if you use a bootloader, change the command below appropriately:
 load: all
 	bootloadHID main.hex

@@ -21,7 +21,11 @@
 
 // ADC defines
 // Just a plain divider
-#define TWI_CLOCK_DIV 0xFF
+#define TWI_CLOCK_DIV       0xFF
+#define ADC_ADDRESS         0x68
+#define ADC_VOLT_CONF       (         _BV(4) | _BV(2))  // Channel 1, continuous, 14 bits
+#define ADC_CURR_CONF       (_BV(5) | _BV(4) | _BV(2))  // Channel 2, continuous, 14 bits
+#define ADC_HI_MASK         0x3F                        // Mask away two MSBs to reach 14 bits
 
 // SPI pins
 #define DDR_MISO0       DDRB

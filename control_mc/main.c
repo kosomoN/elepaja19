@@ -1,8 +1,10 @@
 #include "constants.h"
 #include "spi_protocol.h"
 
+#include "avr-i2c/i2c.h"
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
 
@@ -17,13 +19,24 @@ uint8_t spi_buf_length = 0;
 bool spi_packet_ready = false;
 
 struct {
-    uint32_t voltage;
-    uint32_t current;
+    uint16_t voltage;
+    uint16_t current;
 } typedef OutputValues;
 
 // Always disable interrupts when accessing.
 static OutputValues set_values;
 static OutputValues read_values;
+
+enum {
+    ADC_WR_VOLTAGE,
+    ADC_RD_VOLTAGE,
+    ADC_WR_CURRENT,
+    ADC_RD_CURRENT,
+    ADC_IDLE
+} adc_state = ADC_IDLE;
+
+i2c_txn_t *i2c_t;
+uint8_t i2c_buf[4];
 
 ISR(SPI0_STC_vect)
 {
@@ -37,14 +50,14 @@ ISR(SPI0_STC_vect)
 
 // Use an interrupt on the slave SPI chip select pin
 // to reset the SPI rx/tx buffers.
-ISR(PCINT1_vect)
+ISR(PCINT0_vect)
 {
     // Falling edge means start of SPI transfer
-    if ((PIN_SS0 & (1 << PIN_SS0_PIN)) == 0) {
+    if (PIN_SS0 & (1 << PIN_SS0_PIN)) {
+        spi_packet_ready = true;
+    } else {
         spi_packet_ready = false;
         spi_buf_length = 0;
-    } else {
-        spi_packet_ready = true;
     }
 }
 
@@ -59,8 +72,8 @@ static void setupSlaveSPI(void)
                  (1 << PORT_SS0_PIN);
 
     // Enable pin-change interrupt on chip select pin
-    PCICR |= (1 << PCIE1); // Enable pin change interrupt 1
-    PCMSK1 |= (1 << PCINT14); // Enable interrupt for pin 14 (chip select)
+    PCICR |= (1 << PCIE0); // Enable pin change interrupt 1
+    PCMSK0 |= (1 << PCINT2); // Enable interrupt for pin 14 (chip select)
 
     // Enable SPI, with interrupt
     SPCR0 = (1 << SPE) |
@@ -83,14 +96,14 @@ static void setupDAC(void)
     PORT_DAC_CS |= 1 << PORT_DAC_CS_PIN;
 }
 
+#ifdef ENABLE_ADC
 static void setupADC(void)
 {
-    // Baud rate register
-    TWBR0 = TWI_CLOCK_DIV;
-
-    // Interrupt enable, enable ack
-    TWCR0 = (1 << TWIE) | (1 << TWEA);
+    t = alloca(sizeof(*t) + 1 * sizeof(t->ops[0]));
+    i2c_txn_init(t, 1);
+    i2c_op_init_wr(&t->ops[0], I2C_ADDRESS, i2c_buf, sizeof(i2c_buf));
 }
+#endif
 
 // Writes the set values for current and voltage to the DAC.
 // Blocks until complete.
@@ -110,14 +123,14 @@ static void writeDAC(OutputValues *values)
     bytes[0] = (1 << 7) |           // Channel A
                (1 << 5) |           // Gain 1x
                (enable_curr << 4) | // Enable ouput
-               ((tmp_values.current >> 8) & 0x0F); // 4 MSBs.
-    bytes[1] = tmp_values.current & 0xFF;
+               ((tmp_values.voltage >> 8) & 0x0F); // 4 MSBs.
+    bytes[1] = tmp_values.voltage & 0xFF;
 
     bytes[2] = (0 << 7) |           // Channel B
                (1 << 5) |           // Gain 1x
                (enable_volt << 4) | // Enable ouput
-               ((tmp_values.voltage >> 8) & 0x0F); // 4 MSBs.
-    bytes[3] = tmp_values.voltage & 0xFF;
+               ((tmp_values.current >> 8) & 0x0F); // 4 MSBs.
+    bytes[3] = tmp_values.current & 0xFF;
 
 
     // Write channel A
@@ -154,10 +167,16 @@ int main(void)
 {
     // Enable watchdog. See https://microchipdeveloper.com/8avr:avrwdt
     // https://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html
-    wdt_enable(WDTO_1S);
+    wdt_enable(WDTO_4S);
+    wdt_reset();
+
+    DDRC |= 1 << DDC4;
+    PORTC |= 1 << PORTC4;
 
     setupDAC();
+#ifdef ENABLE_ADC
     setupADC();
+#endif
 
     // Enable global interrupts
     sei();
@@ -167,12 +186,11 @@ int main(void)
     memset(&read_values, 0, sizeof(read_values));
     writeDAC(&set_values);
 
-    // Wait for SPI master to initiate communications
     setupSlaveSPI();
     while (true) {
         wdt_reset();
-        if (spi_packet_ready) {
 
+        if (spi_packet_ready) {
             uint8_t packet_type = 0;
             cli();
             {
@@ -186,15 +204,69 @@ int main(void)
                                                spi_rx_buffer[2];
                         set_values.current = ((spi_rx_buffer[3] & 0x0F) << 8) |
                                                spi_rx_buffer[4];
+                        spi_tx_buffer[1] = (set_values.voltage >> 8) & 0xFF;
+                        spi_tx_buffer[2] = set_values.voltage & 0xFF;
+                        spi_tx_buffer[3] = (set_values.current >> 8) & 0xFF;
+                        spi_tx_buffer[4] = set_values.current & 0xFF;
                     }
                 }
             }
             sei();
 
             // Enable interrupts before actually writing the values to DAC
-            if (packet_type == READWRITE)
+            if (packet_type == READWRITE) {
                 writeDAC(&set_values);
+
+                PORTC &= ~(1 << PORTC4);
+                _delay_ms(20);
+                PORTC |= 1 << PORTC4;
+            }
         }
+
+#ifdef ENABLE_ADC
+        switch (adc_state) {
+        case ADC_IDLE:
+            break;
+        case ADC_WR_VOLTAGE:
+        case ADC_WR_CURRENT:
+            if (!(i2c_t>flags & I2C_TXN_DONE)) {
+                if (t->flags & I2C_TXN_ERR) {
+                    // TODO Handle error
+                } else {
+                    // Delay the read to give the ADC time to actually make the conversion
+                }
+            }
+            break;
+        case ADC_RD_VOLTAGE:
+        case ADC_RD_CURRENT:
+            if (!(i2c_t>flags & I2C_TXN_DONE)) {
+                if (t->flags & I2C_TXN_ERR) {
+                    // TODO Handle error
+                } else {
+                    if (adc_state == ADC_RD_VOLTAGE) {
+                        cli();
+                        read_values.voltage = ((i2c_buf[0] & ADC_HI_MASK) << 8) | i2c_buf[1];
+                        sei();
+                    } else {
+                        cli();
+                        read_values.current = ((i2c_buf[0] & ADC_HI_MASK) << 8) | i2c_buf[1];
+                        sei();
+                    }
+
+                    // Initiate a new write when reading is done
+                    if (adc_state == ADC_RD_VOLTAGE)
+                        adc_state = ADC_WR_CURRENT;
+                    else
+                        adc_state = ADC_WR_VOLTAGE;
+
+                    i2c_buf[0] = (adc_state == ADC_WR_VOLTAGE) ? ADC_VOLT_CONF : ADC_CURR_CONF;
+                    i2c_op_init_rd(&t->ops[0], I2C_ADDRESS, i2c_buf, 1);
+                    i2c_post(t);
+                }
+            }
+            break;
+        }
+#endif
     }
 
     return 0;
