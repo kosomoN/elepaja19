@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define DEBUG_SPI 0
+
 // Values to send to the DAC. (12 bits each)
 struct {
     uint16_t voltage;

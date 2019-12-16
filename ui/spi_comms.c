@@ -7,7 +7,7 @@
 #include <linux/spi/spidev.h>
 #include <wiringPiSPI.h>
 
-#define SPI_FREQ 500000
+#define SPI_FREQ 50000
 
 int initializeSPI()
 {
@@ -39,7 +39,9 @@ InputValues readWriteSPI(OutputChannel channel, OutputValues write)
             printf("Error sending: %s\n", strerror(err));
         }
     }
-
+#if DEBUG_SPI
+    printf("SPI data: %02x%02x%02x%02x%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
+#endif
     InputValues read = { .voltage = ((buf[1] & 0x3F) << 8) | buf[2],
                          .current = ((buf[3] & 0x3F) << 8) | buf[4]};
     return read;
