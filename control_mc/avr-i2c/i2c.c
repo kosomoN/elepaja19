@@ -40,10 +40,10 @@ static volatile i2c_op_t *op;
  *  - TWEN: Enable the I2C system.
  *  - TWIE: Enable interrupt requests when TWINT is set.
  */
-#define TWCR_DEFAULT (_BV(TWEA) | _BV(TWEN) | _BV(TWIE))
+#define TWCR1_DEFAULT (_BV(TWEA) | _BV(TWEN) | _BV(TWIE))
 
-#define TWCR_NOT_ACK (_BV(TWINT) | _BV(TWEN) | _BV(TWIE))
-#define TWCR_ACK (TWCR_NOT_ACK | _BV(TWEA))
+#define TWCR1_NOT_ACK (_BV(TWINT) | _BV(TWEN) | _BV(TWIE))
+#define TWCR1_ACK (TWCR1_NOT_ACK | _BV(TWEA))
 
 void i2c_init(void) {
   uint8_t sreg;
@@ -54,27 +54,21 @@ void i2c_init(void) {
 
   /*
    * From ATmega328P datasheet:
-   *   SCL freq = (CPU Clock freq) / (16 + 2(TWBR) * (PrescalerValue))
+   *   SCL freq = (CPU Clock freq) / (16 + 2(TWBR1) * (PrescalerValue))
    *
    * Which means:
-   *   TWBR = ((CPU Clock freq) / (SCL freq) - 16) / (2 * (PrescalerValue))
+   *   TWBR1 = ((CPU Clock freq) / (SCL freq) - 16) / (2 * (PrescalerValue))
    *
-   * Disable the prescaler and set TWBR according to CPU freq and SCL freq.
+   * Disable the prescaler and set TWBR1 according to CPU freq and SCL freq.
    */
-  TWSR &= ~(_BV(TWPS1) | _BV(TWPS0));
-  TWBR = ((F_CPU / I2C_FREQ) - 16) / (2 * 1);
-
-  /*
-   * Active internal pull-up resistors for SCL and SDA.
-   * Their ports are PC5 for SCL and PC4 for SDA on the ATmega328P.
-   */
-  PORTC |= _BV(PC5) | _BV(PC4);
+  TWSR1 &= ~(_BV(TWPS1) | _BV(TWPS0));
+  TWBR1 = ((F_CPU / I2C_FREQ) - 16) / (2 * 1);
 
   /* Enable interrupts via the control register. */
-  TWCR = TWCR_DEFAULT;
+  TWCR1 = TWCR1_DEFAULT;
 
   /* Disable slave mode. */
-  TWAR = 0;
+  TWAR1 = 0;
 
   /* Restore the status register. */
   SREG = sreg;
@@ -97,7 +91,8 @@ void i2c_post(i2c_txn_t *t) {
     op = &txn->ops[0];
 
     /* Transmit START to kickstart things. */
-    TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTA);
+    TWCR1 = 0;
+    TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTA);
   } else {
     volatile i2c_txn_t *txn_ = txn;
     while (txn_ != NULL) {
@@ -113,12 +108,11 @@ void i2c_post(i2c_txn_t *t) {
   SREG = sreg;
 }
 
-ISR(TWI_vect, ISR_BLOCK) {
-  uint8_t status = TW_STATUS;
+ISR(TWI1_vect, ISR_BLOCK) {
+  uint8_t status = TWSR1 & TW_STATUS_MASK;
 
   /* This interrupt should only fire if there is something to do. */
   assert(op != NULL);
-
   if ((op->address & _BV(0)) == TW_READ) {
     /* Master Receiver mode. */
     switch (status) {
@@ -129,22 +123,22 @@ ISR(TWI_vect, ISR_BLOCK) {
     case TW_REP_START:
       assert(op->buflen > 0);
       op->bufpos = 0;
-      TWDR = op->address;
-      TWCR = TWCR_DEFAULT | _BV(TWINT);
+      TWDR1 = op->address;
+      TWCR1 = TWCR1_DEFAULT | _BV(TWINT);
       break;
 
     /* Arbitration lost in SLA+R or NOT ACK bit. */
     case TW_MR_ARB_LOST:
       /* A START condition will be transmitted when the bus becomes free. */
-      TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTA);
+      TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTA);
       break;
 
     /* SLA+R has been transmitted; ACK has been received. */
     case TW_MR_SLA_ACK:
       if (op->buflen == 1) {
-        TWCR = TWCR_NOT_ACK;
+        TWCR1 = TWCR1_NOT_ACK;
       } else {
-        TWCR = TWCR_ACK;
+        TWCR1 = TWCR1_ACK;
       }
       break;
 
@@ -155,17 +149,17 @@ ISR(TWI_vect, ISR_BLOCK) {
 
     /* Data byte has been received; ACK has been returned. */
     case TW_MR_DATA_ACK:
-      op->buf[op->bufpos++] = TWDR;
+      op->buf[op->bufpos++] = TWDR1;
       if (op->bufpos+1 == op->buflen) {
-        TWCR = TWCR_NOT_ACK;
+        TWCR1 = TWCR1_NOT_ACK;
       } else {
-        TWCR = TWCR_ACK;
+        TWCR1 = TWCR1_ACK;
       }
       break;
 
     /* Data byte has been received; NOT ACK has been returned. */
     case TW_MR_DATA_NACK:
-      op->buf[op->bufpos++] = TWDR;
+      op->buf[op->bufpos++] = TWDR1;
       goto next_op;
 
     default:
@@ -181,20 +175,20 @@ ISR(TWI_vect, ISR_BLOCK) {
     case TW_REP_START:
       assert(op->buflen > 0);
       op->bufpos = 0;
-      TWDR = op->address;
-      TWCR = TWCR_DEFAULT | _BV(TWINT);
+      TWDR1 = op->address;
+      TWCR1 = TWCR1_DEFAULT | _BV(TWINT);
       break;
 
     /* Arbitration lost in SLA+W or data bytes. */
     case TW_MT_ARB_LOST:
       /* A START condition will be transmitted when the bus becomes free. */
-      TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTA);
+      TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTA);
       break;
 
     /* SLA+W has been transmitted; ACK has been received. */
     case TW_MT_SLA_ACK:
-      TWDR = op->buf[op->bufpos++];
-      TWCR = TWCR_DEFAULT | _BV(TWINT);
+      TWDR1 = op->buf[op->bufpos++];
+      TWCR1 = TWCR1_DEFAULT | _BV(TWINT);
       break;
 
     /* SLA+W has been transmitted; NOT ACK has been received. */
@@ -205,8 +199,8 @@ ISR(TWI_vect, ISR_BLOCK) {
     /* Data byte has been transmitted; ACK has been received. */
     case TW_MT_DATA_ACK:
       if (op->bufpos < op->buflen) {
-        TWDR = op->buf[op->bufpos++];
-        TWCR = TWCR_DEFAULT | _BV(TWINT);
+        TWDR1 = op->buf[op->bufpos++];
+        TWCR1 = TWCR1_DEFAULT | _BV(TWINT);
         break;
       }
 
@@ -238,7 +232,7 @@ next_op:
     op = &txn->ops[txn->opspos];
 
     /* Repeated start. */
-    TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTA);
+    TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTA);
     return;
   }
 
@@ -254,7 +248,7 @@ next_txn:
     op = &txn->ops[0];
 
     /* Repeated start. */
-    TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTA);
+    TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTA);
     return;
   }
 
@@ -262,5 +256,5 @@ next_txn:
   op = NULL;
 
   /* No more transaction, transmit STOP. */
-  TWCR = TWCR_DEFAULT | _BV(TWINT) | _BV(TWSTO);
+  TWCR1 = TWCR1_DEFAULT | _BV(TWINT) | _BV(TWSTO);
 }

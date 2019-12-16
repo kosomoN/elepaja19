@@ -4,7 +4,6 @@
 #include "avr-i2c/i2c.h"
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
-#include <avr/pgmspace.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
 
@@ -27,15 +26,27 @@ struct {
 static OutputValues set_values;
 static OutputValues read_values;
 
+/*
+ * State of the ADC communication.
+ * Every ADC conversion first requires an I2C write operation to select the
+ * correct channel. After the write, the ADC needs sufficient time to finish
+ * the conversion before an I2C read operation can be made.
+ *
+ * ADC_RD/WR: I2C read/write operation in progress.
+ * ADC_WTNG: Conversion in progress, I2C bus is idling.
+ * ADC_UNINIT: State at start. Will initiate a voltage conversion.
+ */
 enum {
     ADC_WR_VOLTAGE,
+    ADC_WTNG_VOLTAGE,
     ADC_RD_VOLTAGE,
     ADC_WR_CURRENT,
+    ADC_WTNG_CURRENT,
     ADC_RD_CURRENT,
-    ADC_IDLE
-} adc_state = ADC_IDLE;
+    ADC_UNINIT
+} adc_state;
 
-i2c_txn_t *i2c_t;
+i2c_txn_t i2c_t;
 uint8_t i2c_buf[4];
 
 ISR(SPI0_STC_vect)
@@ -58,9 +69,14 @@ ISR(PCINT0_vect)
     } else {
         spi_packet_ready = false;
         spi_buf_length = 0;
+        spi_tx_buffer[0] = read_values.voltage >> 8;
+        spi_tx_buffer[1] = read_values.voltage;
+        spi_tx_buffer[2] = read_values.current >> 8;
+        spi_tx_buffer[3] = read_values.current;
     }
 }
 
+// SPI interrupt executed after a byte has been received.
 static void setupSlaveSPI(void)
 {
     // Set data direction
@@ -99,9 +115,14 @@ static void setupDAC(void)
 #ifdef ENABLE_ADC
 static void setupADC(void)
 {
-    t = alloca(sizeof(*t) + 1 * sizeof(t->ops[0]));
-    i2c_txn_init(t, 1);
-    i2c_op_init_wr(&t->ops[0], I2C_ADDRESS, i2c_buf, sizeof(i2c_buf));
+    adc_state = ADC_UNINIT;
+    i2c_txn_init(&i2c_t, 1);
+
+    // Initialize TIMER0 for conversion delaying
+    TCCR0B = _BV(2) | _BV(0); // 1024 clock prescaler
+    // Set compare value to (delay / timer0_period)
+    const uint8_t compare_val = ADC_CONV_DELAY_US / (1024U * 1000000U / F_CPU);
+    OCR0A = compare_val;
 }
 #endif
 
@@ -204,10 +225,6 @@ int main(void)
                                                spi_rx_buffer[2];
                         set_values.current = ((spi_rx_buffer[3] & 0x0F) << 8) |
                                                spi_rx_buffer[4];
-                        spi_tx_buffer[1] = (set_values.voltage >> 8) & 0xFF;
-                        spi_tx_buffer[2] = set_values.voltage & 0xFF;
-                        spi_tx_buffer[3] = (set_values.current >> 8) & 0xFF;
-                        spi_tx_buffer[4] = set_values.current & 0xFF;
                     }
                 }
             }
@@ -217,56 +234,68 @@ int main(void)
             if (packet_type == READWRITE) {
                 writeDAC(&set_values);
 
-                PORTC &= ~(1 << PORTC4);
-                _delay_ms(20);
-                PORTC |= 1 << PORTC4;
+                PINC |= 1 << PINC4;
             }
         }
 
-#ifdef ENABLE_ADC
-        switch (adc_state) {
-        case ADC_IDLE:
+        switch (adc_state)
+        {
+        case ADC_UNINIT:
+            // Initiate a new write
+            i2c_buf[0] = ADC_VOLT_CONF;
+            i2c_op_init_wr(&i2c_t.ops[0], ADC_ADDRESS, i2c_buf, 1);
+            i2c_post(&i2c_t);
+            adc_state = ADC_WR_VOLTAGE;
             break;
         case ADC_WR_VOLTAGE:
         case ADC_WR_CURRENT:
-            if (!(i2c_t>flags & I2C_TXN_DONE)) {
-                if (t->flags & I2C_TXN_ERR) {
+            if (i2c_t.flags & I2C_TXN_DONE)  {
+                if (i2c_t.flags & I2C_TXN_ERR) {
                     // TODO Handle error
+                    adc_state = ADC_UNINIT;
                 } else {
-                    // Delay the read to give the ADC time to actually make the conversion
+                    TCNT0 = 0;          // Reset TIMER0
+                    TIFR0 = _BV(OCF0A); // Reset Compare A
+                    adc_state = (adc_state == ADC_WR_VOLTAGE) ? ADC_WTNG_VOLTAGE : ADC_WTNG_CURRENT;
                 }
+            }
+            break;
+        case ADC_WTNG_VOLTAGE:
+        case ADC_WTNG_CURRENT:
+            // Wait for TIMER0
+            if (TIFR0 & _BV(OCF0A)) {
+                i2c_op_init_rd(&i2c_t.ops[0], ADC_ADDRESS, i2c_buf, 3);
+                i2c_post(&i2c_t);
+                adc_state = (adc_state == ADC_WTNG_VOLTAGE) ? ADC_RD_VOLTAGE : ADC_RD_CURRENT;
             }
             break;
         case ADC_RD_VOLTAGE:
         case ADC_RD_CURRENT:
-            if (!(i2c_t>flags & I2C_TXN_DONE)) {
-                if (t->flags & I2C_TXN_ERR) {
+            if (i2c_t.flags & I2C_TXN_DONE) {
+                if (i2c_t.flags & I2C_TXN_ERR) {
                     // TODO Handle error
+                    adc_state = ADC_UNINIT;
                 } else {
                     if (adc_state == ADC_RD_VOLTAGE) {
                         cli();
-                        read_values.voltage = ((i2c_buf[0] & ADC_HI_MASK) << 8) | i2c_buf[1];
+                        read_values.voltage = ((i2c_buf[0] & READ_HI_MASK) << 8) | i2c_buf[1];
                         sei();
                     } else {
                         cli();
-                        read_values.current = ((i2c_buf[0] & ADC_HI_MASK) << 8) | i2c_buf[1];
+                        read_values.current = ((i2c_buf[0] & READ_HI_MASK) << 8) | i2c_buf[1];
                         sei();
                     }
 
                     // Initiate a new write when reading is done
-                    if (adc_state == ADC_RD_VOLTAGE)
-                        adc_state = ADC_WR_CURRENT;
-                    else
-                        adc_state = ADC_WR_VOLTAGE;
+                    i2c_buf[0] = (adc_state == ADC_RD_VOLTAGE) ? ADC_CURR_CONF : ADC_VOLT_CONF;
+                    i2c_op_init_wr(&i2c_t.ops[0], ADC_ADDRESS, i2c_buf, 1);
+                    i2c_post(&i2c_t);
 
-                    i2c_buf[0] = (adc_state == ADC_WR_VOLTAGE) ? ADC_VOLT_CONF : ADC_CURR_CONF;
-                    i2c_op_init_rd(&t->ops[0], I2C_ADDRESS, i2c_buf, 1);
-                    i2c_post(t);
+                    adc_state = (adc_state == ADC_RD_VOLTAGE) ? ADC_WR_CURRENT : ADC_WR_VOLTAGE;
                 }
             }
             break;
         }
-#endif
     }
 
     return 0;

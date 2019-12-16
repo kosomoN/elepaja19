@@ -50,7 +50,7 @@ struct i2c_txn {
   volatile uint8_t flags;
   uint8_t opslen;
   uint8_t opspos;
-  struct i2c_op ops[];
+  struct i2c_op ops[1];
 };
 
 static inline void i2c_op_init(i2c_op_t *o, uint8_t address, uint8_t *buf, uint8_t buflen) {

@@ -11,7 +11,7 @@ DEVICE     = atmega328pb
 CLOCK      = 8000000
 PROGRAMMER = -c avrispmkII -P usb -b 19200
 
-SRC := main.c
+SRC := main.c avr-i2c/i2c.c
 OBJ := $(patsubst %.c,%.o,$(SRC))
 DEP := $(patsubst %.c,%.d,$(SRC))
 
