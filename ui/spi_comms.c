@@ -34,10 +34,7 @@ InputValues readWriteSPI(OutputChannel channel, OutputValues write)
 
     errno = 0;
     if (!wiringPiSPIDataRW(channel, buf, sizeof(buf))) {
-        int err = errno;
-        if (!err) {
-            printf("Error sending: %s\n", strerror(err));
-        }
+        printf("Error sending: %s\n", strerror(errno));
     }
 #if DEBUG_SPI
     printf("SPI data: %02x%02x%02x%02x%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
